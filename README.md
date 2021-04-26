@@ -1,20 +1,14 @@
-# dtest
-It's a sub-project for Dynamic Test, instead its smake to cmake.
+# 核心代码
 
-# build
-- Linux
-```
-git clone https://github.com/ProtossGenius/dtest.git
-cd dtest
-./udpate # you need python3 to run it
-#and then, you you maybe want mkdir an build dir 
-cmake $dtest_path
-make
-make install
+之后可能整理每个.h文件的文档，不过因为打算通过工具自动生成文档，所以又遥遥无期了
 
-```
+# Catalog
+---
+[<<< upper page](../README.md)
+---
 
-- Windows & mac
+# SubCatalog
 
-you should compile the rely-libs and put them to the 'third\_part' dir
-I think there will some update for those os later.(I know, but I don't work on those system...)
+---
+[<<< upper page](../README.md)
+---

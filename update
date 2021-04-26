@@ -16,9 +16,6 @@ class Colored(object):
         return Fore.YELLOW + s + Fore.RESET
 
 color = Colored()
-print(color.red('I am red!'))
-print(color.green('I am gree!'))
-print(color.yellow('I am yellow!'))
 
 def info(msg):
     print(color.green('[info]'+msg))
@@ -40,18 +37,31 @@ def getDirName(repository):
    splitlist= repository.split('/')
    return splitlist[len(splitlist)-1]
 
-def install_rely(repository, branch, index):
+def install_rely(repository, branch, commands, index):
     if repository is None:
         warn("""there is an error, repository not exist.
                 whose index in rely.json is %d""" % count)
     if branch is None:
         branch = 'release'
     info("installing repository %s " % repository)
-
     os.system('cd /tmp && git clone https://%s --branch %s' % (repository, branch))
     dirName = getDirName(repository)
     os.system('rm -rf /tmp/%s/.git' % (dirName))
     os.system('mv /tmp/%s/* ./%s/' % (dirName, third_part))
+    if commands is None:
+        return
+    if isinstance(commands, str):
+        os.system(commands)
+        return
+    if not isinstance(commands, list):
+        warn("unexcept commands type when installing [%s], its value is : %s" % (repository, commands))
+        return
+    for cmd in commands:
+        if not isinstance(cmd, str):
+            warn("unexcept command when installing [%s], its value is : %s" % (repository, cmd))
+            continue
+        os.system(cmd)
+
 
 
 f = open("./rely.json", 'r')
@@ -62,7 +72,7 @@ index = 0
 ## may use multi-thread will run faster.
 for rely in relyList:
     print(rely)
-    install_rely(rely['repository'], rely['branch'], index)
+    install_rely(rely['repository'], rely['branch'], rely['commands'], index)
     index = index + 1
 
 
