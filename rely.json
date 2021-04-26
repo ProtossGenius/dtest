@@ -1,7 +1,3 @@
 [
-	{"repository":"github.com/ProtossGenius/smncpp", "branch":"release", "commands":[
-		"echo hello",
-		"echo world",
-		{}
-	]}
+	{"repository":"github.com/ProtossGenius/smncpp"}
 ]

@@ -3,6 +3,7 @@
 import json
 import os 
 from colorama import  init, Fore, Back, Style
+import threading
 init(autoreset=True)
 class Colored(object):
     #  前景色:红色  背景色:默认
@@ -30,26 +31,27 @@ third_part = './third_part'
 os.system('rm -rf %s' % third_part)
 os.mkdir(third_part)
 
-
-error("test error")
-
 def getDirName(repository):
    splitlist= repository.split('/')
    return splitlist[len(splitlist)-1]
 
-def install_rely(repository, branch, commands, index):
-    if repository is None:
+def install_rely(rely, index):
+    if 'repository' not in rely:
         warn("""there is an error, repository not exist.
                 whose index in rely.json is %d""" % count)
-    if branch is None:
-        branch = 'release'
+        return
+    repository= rely['repository']
+    branch = 'release'
+    if 'branch' in rely:
+        branch = rely['branch']
     info("installing repository %s " % repository)
     os.system('cd /tmp && git clone https://%s --branch %s' % (repository, branch))
     dirName = getDirName(repository)
     os.system('rm -rf /tmp/%s/.git' % (dirName))
     os.system('mv /tmp/%s/* ./%s/' % (dirName, third_part))
-    if commands is None:
+    if 'commands' not in rely :
         return
+    commands= rely['commands']
     if isinstance(commands, str):
         os.system(commands)
         return
@@ -69,10 +71,18 @@ relys = f.read()
 relyList = json.loads(relys)
 index = 0
 
+threads=[]
 ## may use multi-thread will run faster.
 for rely in relyList:
     print(rely)
-    install_rely(rely['repository'], rely['branch'], rely['commands'], index)
+    t = threading.Thread(target=install_rely,args=(rely, index))
     index = index + 1
+    threads.append(t)
+    t.start()
+
+for thread in threads:
+    thread.join()
+
+info("update finish")
 
 
