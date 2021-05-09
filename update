@@ -48,7 +48,7 @@ def install_rely(rely, index):
     os.system('cd /tmp && git clone https://%s --branch %s' % (repository, branch))
     dirName = getDirName(repository)
     os.system('rm -rf /tmp/%s/.git' % (dirName))
-    os.system('mv /tmp/%s/* ./%s/' % (dirName, third_part))
+    os.system('cp -r /tmp/%s/* ./%s/' % (dirName, third_part))
     if 'commands' not in rely :
         return
     commands= rely['commands']
