@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(dtest)
+project(smdtest)
 set(CXX_FLAGS
         -g
         # -DVALGRIND
@@ -25,13 +25,13 @@ include_directories(. "./third_part/include")
 link_directories(. "./third_part/lib")
 
 aux_source_directory(. src_files)
-add_library(dtest ${src_files})
+add_library(smdtest ${src_files})
 
 #add_executable(dtest.run main.cpp)
 
 #target_link_libraries(dtest.run smncpp)
 
 
-install (TARGETS dtest DESTINATION lib)
+install (TARGETS smdtest DESTINATION lib)
 install (FILES action.h business.h costom_action.h process.h strategy.h user.h
-   	DESTINATION include/dtest)
+   	DESTINATION include/smdtest)
