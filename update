@@ -45,6 +45,7 @@ def install_rely(rely, index):
     if 'branch' in rely:
         branch = rely['branch']
     info("installing repository %s " % repository)
+    os.system("rm -rf /tmp/" + repository)
     os.system('cd /tmp && git clone https://%s --branch %s' % (repository, branch))
     dirName = getDirName(repository)
     os.system('rm -rf /tmp/%s/.git' % (dirName))
