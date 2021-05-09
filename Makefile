@@ -8,6 +8,7 @@ test:
 
 install:
 	cd build && cmake .. && sudo make install
+	sudo cp ./update /usr/local/bin/importcpp
 clean:
 
 publish_release: install
