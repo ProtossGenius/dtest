@@ -12,8 +12,9 @@ clean:
 
 publish_release: install
 	git checkout release
-	cp -r /usr/local/lib/libdtest.a ./lib
-	cp -r /usr/local/include/dtest ./include
+	rm -rf ./lib/* ./include/*
+	cp -r /usr/local/lib/libsmdtest.a ./lib
+	cp -r /usr/local/include/smdtest ./include
 	git add .
 	git commit -m "publish_release"
 	git push
