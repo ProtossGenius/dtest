@@ -73,6 +73,7 @@ relyList = json.loads(relys)
 index = 0
 
 threads=[]
+os.system("rm -rf ./third_part/*")
 ## may use multi-thread will run faster.
 for rely in relyList:
     print(rely)
