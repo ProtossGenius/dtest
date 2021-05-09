@@ -37,7 +37,7 @@ namespace smdtest{
 			virtual std::string statusJson() ;	
 			virtual std::string name() = 0;
 			virtual std::string desc() = 0;
-			std::string error(){
+			virtual std::string error(){
 				return _err;
 			}
 		public:
