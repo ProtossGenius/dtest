@@ -33,5 +33,5 @@ add_library(smdtest ${src_files})
 
 
 install (TARGETS smdtest DESTINATION lib)
-install (FILES action.h business.h costom_action.h process.h strategy.h user.h
+install (FILES action.h business.h costom_action.h process.h strategy.h user.h user_manager.h
    	DESTINATION include/smdtest)
