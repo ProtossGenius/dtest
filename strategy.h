@@ -12,6 +12,9 @@ namespace smdtest{
 			virtual std::shared_ptr<smnet::Ticker> getTicker() = 0;
 		protected:
 			void closeUser(User& usr);
+
+		public:
+			~Strategy();
 	};
 }
 
