@@ -4,7 +4,8 @@ prebuild:
 debug:
 
 qrun:
-test:
+test: run_demo
+	
 
 install:
 	cd build && cmake .. && sudo make install
@@ -20,3 +21,8 @@ publish_release: install
 	git commit -m "publish_release"
 	git push
 	git checkout -
+
+run_demo:
+	rm -rf dtest-demo
+	git clone https://github.com/ProtossGenius/dtest-demo.git
+	cd dtest-demo && rm -rf build && mkdir build && make qrun

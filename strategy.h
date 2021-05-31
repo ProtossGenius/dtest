@@ -14,7 +14,7 @@ namespace smdtest{
 			void closeUser(User& usr);
 
 		public:
-			~Strategy();
+			virtual ~Strategy(){}
 	};
 }
 
